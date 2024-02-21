@@ -16,6 +16,7 @@ export default function AnimalList ({
             id="name-input"
             type="text" 
             value={newAnimal.name} 
+            placeholder="name"
             onChange={(e) => {
                 setNewAnimal({...newAnimal, name: e.target.value})
             }} 
@@ -28,6 +29,7 @@ export default function AnimalList ({
             id="species-input"
             type="text" 
             value={newAnimal.species} 
+            placeholder="species"
             onChange={(e) => {
                 setNewAnimal({...newAnimal, species: e.target.value})
             }} 
@@ -40,6 +42,7 @@ export default function AnimalList ({
             id="image-input"
             type="text" 
             value={newAnimal.image} 
+            placeholder="image URL"
             onChange={(e) => {
                 setNewAnimal({...newAnimal, image: e.target.value})
             }} 

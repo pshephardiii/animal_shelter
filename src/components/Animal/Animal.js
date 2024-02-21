@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 
 
 export default function Animal({ animal, updateAnimal, deleteAnimal }){
-    const [showInput, setShowInput] = useState(fase)
+    const [showInput, setShowInput] = useState(false)
     const nameInputRef = useRef(null)
     const speciesInputRef = useRef(null)
     const imageInputRef = useRef(null)
@@ -37,9 +37,11 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                     ref={nameInputRef}
                     style={{ display: showInput ? 'inline-block' : 'none' }}
                     onKeyDown={(e) => {
-                        const name = nameInputRef.current.value
-                        updateAnimal(animal._id, { name })
-                        setShowInput(false)
+                        if (e.key === 'Enter') {
+                          const name = nameInputRef.current.value
+                          updateAnimal(animal._id, { name })
+                          setShowInput(false)
+                        }
                     }}
                     defaultValue={animal.name}
                 />
@@ -47,9 +49,11 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                     ref={speciesInputRef}
                     style={{ display: showInput ? 'inline-block' : 'none' }}
                     onKeyDown={(e) => {
-                        const species = speciesInputRef.current.value
-                        updateAnimal(animal._id, { species })
-                        setShowInput(false)
+                        if (e.key === 'Enter') {
+                          const species = speciesInputRef.current.value
+                          updateAnimal(animal._id, { species })
+                          setShowInput(false)
+                        }
                     }}
                     defaultValue={animal.species}
                 />
@@ -57,9 +61,11 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                     ref={imageInputRef}
                     style={{ display: showInput ? 'inline-block' : 'none' }}
                     onKeyDown={(e) => {
-                        const image = imageInputRef.current.value
-                        updateAnimal(animal._id, { image })
-                        setShowInput(false)
+                        if (e.key === 'Enter') {
+                          const image = imageInputRef.current.value
+                          updateAnimal(animal._id, { image })
+                          setShowInput(false)
+                        }
                     }}
                     defaultValue={animal.image}
                 />
