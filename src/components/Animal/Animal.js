@@ -1,7 +1,6 @@
 import styles from './Animal.module.scss'
 import { useRef, useState } from 'react'
 
-
 export default function Animal({ animal, updateAnimal, deleteAnimal }){
     const [showInput, setShowInput] = useState(false)
     const nameInputRef = useRef(null)
@@ -39,7 +38,9 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           const name = nameInputRef.current.value
-                          updateAnimal(animal._id, { name })
+                          const species = speciesInputRef.current.value
+                          const image = imageInputRef.current.value
+                          updateAnimal(animal._id, { name, species, image })
                           setShowInput(false)
                         }
                     }}
@@ -50,8 +51,10 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                     style={{ display: showInput ? 'inline-block' : 'none' }}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
+                          const name = nameInputRef.current.value
                           const species = speciesInputRef.current.value
-                          updateAnimal(animal._id, { species })
+                          const image = imageInputRef.current.value
+                          updateAnimal(animal._id, { name, species, image })
                           setShowInput(false)
                         }
                     }}
@@ -62,8 +65,10 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                     style={{ display: showInput ? 'inline-block' : 'none' }}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
+                          const name = nameInputRef.current.value
+                          const species = speciesInputRef.current.value
                           const image = imageInputRef.current.value
-                          updateAnimal(animal._id, { image })
+                          updateAnimal(animal._id, { name, species, image })
                           setShowInput(false)
                         }
                     }}

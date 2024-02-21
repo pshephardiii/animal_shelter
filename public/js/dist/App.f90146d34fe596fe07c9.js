@@ -172,8 +172,12 @@ function Animal(_ref) {
     onKeyDown: e => {
       if (e.key === 'Enter') {
         const name = nameInputRef.current.value;
+        const species = speciesInputRef.current.value;
+        const image = imageInputRef.current.value;
         updateAnimal(animal._id, {
-          name
+          name,
+          species,
+          image
         });
         setShowInput(false);
       }
@@ -186,9 +190,13 @@ function Animal(_ref) {
     },
     onKeyDown: e => {
       if (e.key === 'Enter') {
+        const name = nameInputRef.current.value;
         const species = speciesInputRef.current.value;
+        const image = imageInputRef.current.value;
         updateAnimal(animal._id, {
-          species
+          name,
+          species,
+          image
         });
         setShowInput(false);
       }
@@ -201,8 +209,12 @@ function Animal(_ref) {
     },
     onKeyDown: e => {
       if (e.key === 'Enter') {
+        const name = nameInputRef.current.value;
+        const species = speciesInputRef.current.value;
         const image = imageInputRef.current.value;
         updateAnimal(animal._id, {
+          name,
+          species,
           image
         });
         setShowInput(false);
@@ -792,4 +804,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.228671004c4b3ad445b34c6f5beb762c.js.map
+//# sourceMappingURL=App.69973e269cc108fbd39575cf18c71374.js.map
