@@ -17,7 +17,7 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
               <p>{animal.species}</p>
             </div>
             <div className={styles.animalImageContainer}>
-              <img src={animal.image} alt={`{"Image of a cute ${animal.species} named ${animal.name}"}`}></img>
+              <img src={animal.image} alt={`Image of a cute ${animal.species} named ${animal.name}`}></img>
             </div>
           </div>
             <button 
