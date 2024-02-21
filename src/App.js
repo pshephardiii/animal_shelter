@@ -1,111 +1,104 @@
 import { useState, useEffect } from 'react'
-import TodoList from './components/TodoList/TodoList'
+import AnimalList from './components/AnimalList/AnimalList'
 import styles from './App.module.scss'
 
 
 export default function App(){
-    const [todos, setTodos] = useState([])
-    const [completedTodos, setCompletedTodos] = useState([])
-    const [newTodo, setNewTodo] = useState({
-        title: '',
-        completed: false
+    const [animals, setAnimals] = useState([])
+    const [newAnimal, setNewAnimal] = useState({
+        name: '',
+        species: '',
+        image: '',
+        reservedForAdoption: false
     })
 
-    //createTodos
-    const createTodo = async () => {
-        const body = {...newTodo}
+    const createAnimal = async () => {
+        const body = {...newAnimal}
         try {
-            const response = await fetch('/api/todos', {
+            const response = await fetch('/api/animals', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
             })
-            const createdTodo = await response.json()
-            const todosCopy = [createdTodo,...todos]
-            setTodos(todosCopy)
-            setNewTodo({
-                title: '',
-                completed: false
+            const createdAnimal = await response.json()
+            const animalsCopy = [createdAnimal,...animals]
+            setAnimals(animalsCopy)
+            setNewAnimal({
+                name: '',
+                species: '',
+                image: '',
+                reservedForAdoption: false
             })
         } catch (error) {   
             console.error(error)
         }
     }
-    //deleteTodos
-    const deleteTodo = async (id) => {
+
+    const deleteAnimal = async (id) => {
         try {
-            const index = completedTodos.findIndex((todo) => todo._id === id)
-            const completedTodosCopy = [...completedTodos]
-            const response = await fetch(`/api/todos/${id}`, {
+            const index = animals.findIndex((animal) => animal._id === id)
+            const animalsCopy = [...animals]
+            const response = await fetch(`/api/animals/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
             await response.json()
-            completedTodosCopy.splice(index, 1)
-            setCompletedTodos(completedTodosCopy)
+            animalsCopy.splice(index, 1)
+            setAnimals(animalsCopy)
         } catch (error) {
             console.error(error)
         }
     }
-    //moveToCompleted
-    const moveToCompleted = async (id) => {
+
+    const updateAnimal = async (id, subject) => {
         try {
-            const index = todos.findIndex((todo) => todo._id === id)
-            const todosCopy = [...todos]
-            const subject = todosCopy[index]
-            subject.completed = true 
-            const response = await fetch(`/api/todos/${id}`, {
+            const response = await fetch(`/api/animals/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(subject)
             })
-            const updatedTodo = await response.json()
-            const completedTDsCopy = [updatedTodo, ...completedTodos]
-            setCompletedTodos(completedTDsCopy)
-            todosCopy.splice(index, 1)
-            setTodos(todosCopy)
+            const index = animals.findIndex((animal) => id === animal._id)
+            const animalsCopy = [...animals]
+            const data = await response.json()
+            animalsCopy[index] = {...animalsCopy[index], ...subject }
+            setAnimals(animalsCopy)
         } catch (error) {
             console.error(error)
         }
     }
-    //getTodos
-    const getTodos = async () => {
+
+    const getAnimals = async () => {
         try{
-            const response = await fetch('/api/todos')
-            const foundTodos = await response.json()
-            setTodos(foundTodos.reverse())
-            console.log('hey')
-            const responseTwo = await fetch('/api/todos/completed')
-            const foundCompletedTodos = await responseTwo.json()
-            setCompletedTodos(foundCompletedTodos.reverse())
+            const response = await fetch('/api/animals')
+            const foundAnimals = await response.json()
+            setAnimals(foundAnimals.reverse())
         } catch(error){
             console.error(error)
         }
     }
     useEffect(() => {
-        getTodos()
+        getAnimals()
     }, [])
     return(
         <>
 			
             <div className={styles.banner}>
-                <h1>The World Famous Big Poppa Code React Starter Kit</h1>
-              <img src='https://i.imgur.com/5WXigZL.jpg'/>
+                <h1>Welcome to Sunny Animal Shelter!</h1>
+              <img src='https://imgur.com/Wzz1JBe.png'/>
             </div>
-            <TodoList
-            newTodo={newTodo}
-            setNewTodo={setNewTodo}
-            createTodo={createTodo}
-            todos={todos}
-            moveToCompleted={moveToCompleted}
-            completedTodos={completedTodos}
-            deleteTodo={deleteTodo}
+            <AnimalList
+            newAnimal={newAnimal}
+            setNewAnimal={setNewAnimal}
+            createAnimal={createAnimal}
+            animals={animals}
+            updateAnimal={updateAnimal}
+            deleteAnimal={deleteAnimal}
             />
         </>
     )
