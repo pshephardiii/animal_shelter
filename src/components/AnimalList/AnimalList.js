@@ -13,6 +13,7 @@ export default function AnimalList ({
         <div className={styles.animallist}>
             Add New Animal:
           <div className={styles.inputContainer}>
+
             <input 
             className={styles.input}
             id="name-input"
@@ -26,6 +27,7 @@ export default function AnimalList ({
                 e.key === 'Enter' && createAnimal()
             }}
             />
+
             <input 
             className={styles.input}
             id="species-input"
@@ -39,6 +41,7 @@ export default function AnimalList ({
                 e.key === 'Enter' && createAnimal()
             }}
             />
+
             <input 
             className={styles.input}
             id="image-input"
@@ -53,15 +56,16 @@ export default function AnimalList ({
             }}
             />
           </div>
-             <h3>Animals up for Adoption:</h3>
-        {animals.map(animal => (
+
+          <h3>Animals up for Adoption:</h3>
+          {animals.map(animal => (
             <Animal 
-                key={animal._id} 
-                animal={animal}
-                updateAnimal={updateAnimal}
-                deleteAnimal={deleteAnimal}
+            key={animal._id} 
+            animal={animal}
+            updateAnimal={updateAnimal}
+            deleteAnimal={deleteAnimal}
             />
-        ))}
+          ))}
         </div>
     )
 }

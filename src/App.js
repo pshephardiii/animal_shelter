@@ -90,7 +90,7 @@ export default function App(){
 			
             <div className={styles.banner}>
                 <h1>Welcome to Sunny Animal Shelter!</h1>
-              <img src='https://imgur.com/Wzz1JBe.png'/>
+                <img src='https://imgur.com/Wzz1JBe.png'/>
             </div>
             <AnimalList
             newAnimal={newAnimal}

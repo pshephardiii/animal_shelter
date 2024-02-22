@@ -8,21 +8,26 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
     const imageInputRef = useRef(null)
     return(
         <div className={styles.animal}> 
+
           <div className={styles.animalInfoContainer}>
+
             <div className={styles.animalNameContainer}>
               <h2 className={styles.animalName}>{animal.name}</h2>
               <h4 className={styles.animalSpecies}>{animal.species}</h4>
             </div>
+
             <div className={styles.animalImageContainer}>
               <img className={styles.animalImage} src={animal.image} alt={`Image of a cute ${animal.species} named ${animal.name}`}></img>
             </div>
-              <div className={styles.buttonContainer}>
+
+            <div className={styles.buttonContainer}>
               <button 
                 className={styles.button}
                 onClick={() => setShowInput(!showInput)}
             >
                 Update
               </button>
+
               <button
                 className={styles.button}
                 onClick={() => deleteAnimal(animal._id)}
@@ -30,6 +35,7 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                 Adopted!
               </button>
             </div>
+            
             <div className={styles.inputContainer}>
                 <input 
                     ref={nameInputRef}

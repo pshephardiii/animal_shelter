@@ -34,14 +34,15 @@
                 margin-bottom: 40px;
             }
         }
-
-
             
         .animalImage {
             width: 45vw;
             min-width: 20rem;
             border: 2px solid white;
             border-radius: 15px;
+            object-fit: cover;
+            object-position: 50% 50%;
+            max-height: 50vh;
         }
     
         .buttonContainer {
@@ -68,7 +69,6 @@
                 background-color: white;
                 color: blue;
             }
-
         }
 
         .inputContainer {
