@@ -11,7 +11,9 @@ export default function AnimalList ({
 }){
     return(
         <div className={styles.animallist}>
-            Add New Animal:<input 
+            Add New Animal:
+          <div className={styles.inputContainer}>
+            <input 
             className={styles.input}
             id="name-input"
             type="text" 
@@ -50,7 +52,8 @@ export default function AnimalList ({
                 e.key === 'Enter' && createAnimal()
             }}
             />
-             <h3>Animals up for Adoption</h3>
+          </div>
+             <h3>Animals up for Adoption:</h3>
         {animals.map(animal => (
             <Animal 
                 key={animal._id} 

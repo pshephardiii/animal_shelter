@@ -10,27 +10,26 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
         <div className={styles.animal}> 
           <div className={styles.animalInfoContainer}>
             <div className={styles.animalNameContainer}>
-              <h5>{animal.name}</h5>
-            </div>
-            <div className={styles.animalSpeciesContainer}>
-              <p>{animal.species}</p>
+              <h2 className={styles.animalName}>{animal.name}</h2>
+              <h4 className={styles.animalSpecies}>{animal.species}</h4>
             </div>
             <div className={styles.animalImageContainer}>
-              <img src={animal.image} alt={`Image of a cute ${animal.species} named ${animal.name}`}></img>
+              <img className={styles.animalImage} src={animal.image} alt={`Image of a cute ${animal.species} named ${animal.name}`}></img>
             </div>
-          </div>
-            <button 
+              <div className={styles.buttonContainer}>
+              <button 
                 className={styles.button}
                 onClick={() => setShowInput(!showInput)}
             >
                 Update
-            </button>
-            <button
+              </button>
+              <button
                 className={styles.button}
                 onClick={() => deleteAnimal(animal._id)}
-            >
+              >
                 Adopted!
-            </button>
+              </button>
+            </div>
             <div className={styles.inputContainer}>
                 <input 
                     ref={nameInputRef}
@@ -75,6 +74,7 @@ export default function Animal({ animal, updateAnimal, deleteAnimal }){
                     defaultValue={animal.image}
                 />
             </div>
+          </div>
         </div>
     )
 }
